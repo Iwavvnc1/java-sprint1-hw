@@ -12,12 +12,12 @@ public class StepTracker {
             }
             System.out.println(" ");
         }
-        public void sumStep(int mounth) {
+        public int sumStep(int mounth) {
         int sumStep = 0;
         for (int i = 0; i < 30; i++) {
              sumStep += days[mounth][i];
         }
-            System.out.println(sumStep);
+        return sumStep;
         }
         public int maxStep(int mounth) {
         int max = 0;
@@ -28,5 +28,9 @@ public class StepTracker {
         }
         System.out.println(days[mounth][max]);
         return days[mounth][max];
+        }
+        public void averageStepMounth(int mounth) {
+        int average = sumStep(mounth)/30;
+        System.out.println(average);
         }
     }

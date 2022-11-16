@@ -3,12 +3,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         StepTracker stepTracker = new StepTracker();
+        Converter converter = new Converter();
         printMenu();
         int userInput = scanner.nextInt();
 
         while (userInput != 0) {
             if (userInput == 1) {
                 System.out.println("Введите номер месяца:");
+                System.out.println("0-январь, 1-февраль,2-март,3-апрель,4-май,5-июнь,6-июль,7-август,8-сентябрь,9-октябрь,10-ноябрь,11-декабрь");
                 int userMounth = scanner.nextInt();
                 System.out.println("Введите номер дня:");
                 int userDay = scanner.nextInt();
@@ -20,17 +22,20 @@ public class Main {
                 userInput = scanner.nextInt();
             } else if (userInput == 2) {
                 System.out.println("Введите номер месяца");
+                System.out.println("0-январь, 1-февраль,2-март,3-апрель,4-май,5-июнь,6-июль,7-август,8-сентябрь,9-октябрь,10-ноябрь,11-декабрь");
                 int userMounth = scanner.nextInt();
                 System.out.println("Статистика за " + userMounth + " месяц.");
                 System.out.println("Количество пройденных шагов по дням:");
                 stepTracker.stepOnDays(userMounth);
                 System.out.println("Общее количество шагов за месяц: ");
-                stepTracker.sumStep(userMounth);
+                System.out.println(stepTracker.sumStep(userMounth));
                 System.out.println("Максимальное пройденное количество шагов в месяце:");
                 stepTracker.maxStep(userMounth);
-                //maxStep
-                //averageStepMounth
-                //distanse km
+                System.out.println("Среднее количество шагов за месяц:");
+                stepTracker.averageStepMounth(userMounth);
+                System.out.println("Пройденная дистанция (в км): ");
+                converter.distance(userMounth);
+                System.out.println("Количество сожжённых килокалорий:");
                 //calories
                 /*bestSeries Лучшая серия: максимальное количество подряд идущих дней,
                 в течение которых количество шагов за день было равно или выше целевого.
