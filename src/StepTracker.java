@@ -1,13 +1,32 @@
-public class StepTracker {/*
-    MonthData[] monthToData;
+public class StepTracker {
     int desiredStep = 10_000;
-    public StepTracker() {
-        monthToData = new MonthData[12];
-        for (int i = 0; i < monthToData.length; i++) {
-            monthToData[i] = new MonthData();
+    int[][] days = new int[12][30];
+    public void step(int step, int mounth, int day) {
+        days[mounth][day] = step;
+    }
+    public void stepOnDays(int mounth) {
+            int j = 1;
+            for (int i = 0; i < 30; i++) {
+                System.out.print(j + " день: " + days[mounth][i] + ", ");
+                j = j + 1;
+            }
+            System.out.println(" ");
+        }
+        public void sumStep(int mounth) {
+        int sumStep = 0;
+        for (int i = 0; i < 30; i++) {
+             sumStep += days[mounth][i];
+        }
+            System.out.println(sumStep);
+        }
+        public int maxStep(int mounth) {
+        int max = 0;
+        for (int i = 0; i < 30; i++) {
+            if (days[mounth][i] > days[mounth][max]) {
+                max = i;
+            }
+        }
+        System.out.println(days[mounth][max]);
+        return days[mounth][max];
         }
     }
-    class MonthData {
-        monthToData
-    }*/
-}

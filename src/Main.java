@@ -2,27 +2,32 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        StepTracker stepTracker = new StepTracker();
         printMenu();
         int userInput = scanner.nextInt();
 
         while (userInput != 0) {
             if (userInput == 1) {
-                System.out.println("Введите порядковый номер месяца начиная с 0:");
-                //scan
-                System.out.println("Введите порядковый номер дня:");
-                //scan
+                System.out.println("Введите номер месяца:");
+                int userMounth = scanner.nextInt();
+                System.out.println("Введите номер дня:");
+                int userDay = scanner.nextInt();
                 System.out.println("Введите количество шагов:");
-                //scan
-                // сохранение данных в массив
+                int userStep = scanner.nextInt();
+                stepTracker.step(userStep, userMounth, userDay-1);
                 System.out.println("данные сохранены");
                 printMenu();
                 userInput = scanner.nextInt();
             } else if (userInput == 2) {
-                System.out.println("Введите порядковый номер месяца начиная с 0:");
-                //scan
-                System.out.println("Статистика за  /*mounth*/месяц.");
-                // 1 day: 3000step;2 day: 1000 step ...
-                //sumStep
+                System.out.println("Введите номер месяца");
+                int userMounth = scanner.nextInt();
+                System.out.println("Статистика за " + userMounth + " месяц.");
+                System.out.println("Количество пройденных шагов по дням:");
+                stepTracker.stepOnDays(userMounth);
+                System.out.println("Общее количество шагов за месяц: ");
+                stepTracker.sumStep(userMounth);
+                System.out.println("Максимальное пройденное количество шагов в месяце:");
+                stepTracker.maxStep(userMounth);
                 //maxStep
                 //averageStepMounth
                 //distanse km
