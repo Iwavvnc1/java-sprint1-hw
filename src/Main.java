@@ -9,26 +9,18 @@ public class Main {
         while (userInput != 0) {
             if (userInput == 1) {
                 stepTracker.countStep();
-                printMenu();
-                userInput = scanner.nextInt();
-
             } else if (userInput == 2) {
                     stepTracker.statistics();
-                    printMenu();
-                    userInput = scanner.nextInt();
-
             } else if (userInput == 3) {
                 stepTracker.purpose();
-                printMenu();
-                userInput = scanner.nextInt();
             } else if ((userInput > 4) || (userInput < 0)) {
                 System.out.println("Такая команда еще не доступна, попробуйте еще раз.");
-                printMenu();
-                userInput = scanner.nextInt();
             } else {
                 System.out.println("Программа завершена");
                 return;
             }
+            printMenu();
+            userInput = scanner.nextInt();
         }
     }
         public static void printMenu() {

@@ -139,8 +139,10 @@ public class StepTracker {
 
             int userStep;
             userStep = scanner.nextInt();
-            desiredStep = userStep;
+            if (checkStep(userStep)) {
+                desiredStep = userStep;
             System.out.println("Новая цель:" + desiredStep + " шагов.");
+        }
         }
     }
 
