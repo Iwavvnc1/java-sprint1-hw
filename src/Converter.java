@@ -1,12 +1,14 @@
 public class Converter {
-    StepTracker stepTracker = new StepTracker();
-
-    public void converterDistance(int month) { // метод перевода шагов в км
-        double i = 0.00075 * stepTracker.sumStep(month);
-        System.out.println(i);
+    double km = 0.00075;
+    double stepCalories = 0.05;
+    public double converterDistance(int month) { // метод перевода шагов в км
+        double distant;
+        distant= km * month;
+        return distant;
     }
-    public void calories(int month) { //метод перевода шагов в калории
-        double calories = 0.05 * stepTracker.sumStep(month);
-        System.out.println(calories);
+    public double calories(int month) { //метод перевода шагов в калории
+        double caloriesOnStep;
+        caloriesOnStep = stepCalories * month;
+        return caloriesOnStep;
     }
 }
