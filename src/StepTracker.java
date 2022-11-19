@@ -4,6 +4,7 @@ public class StepTracker {
     Scanner scanner = new Scanner(System.in);
     public int desiredStep = 10_000;
     public int sumStep;
+    public int countDayOnMonth = 30;
     public static int[][] days = new int[12][30];
 
     public void step(int step, int mounth, int day) { //метод сохранения шагов в массив
@@ -12,7 +13,7 @@ public class StepTracker {
 
     public void stepOnDays(int mounth) { //метод который показывает шаги по дням
         int number = 1;
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < countDayOnMonth; i++) {
             System.out.print(number + " день: " + days[mounth][i] + ", ");
             number = number + 1;
         }
@@ -21,7 +22,7 @@ public class StepTracker {
 
     public int sumStep(int mounth) { //метод для подсчёта суммы шагов
         sumStep = 0;
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < countDayOnMonth; i++) {
             sumStep += days[mounth][i];
         }
         return sumStep;
@@ -29,8 +30,7 @@ public class StepTracker {
 
     public void maxStep(int mounth) { //метод для поиска наибольшего количества шагов за день
         int max = 0;
-        int day = 30;
-        for (int i = 0; i < day; i++) {
+        for (int i = 0; i < countDayOnMonth; i++) {
             if (days[mounth][i] > days[mounth][max]) {
                 max = i;
             }
@@ -39,32 +39,27 @@ public class StepTracker {
     }
 
     public void averageStepMounth(int mounth) { // метод для рассчета среднего количества шагов
-        int day = 30;
-        int average = sumStep(mounth) / day;
+        int average = sumStep(mounth) / countDayOnMonth;
         System.out.println(average);
     }
 
     public int bestSeries(int month) { // метод для расчета лучшей серии
-        int currentSeries = 1;
-        int saveSeries = 0;
-        int localSeries;
-        int day = 30;
-        for (int i = 1; i < day; i++) {
+        int bestSeries = 0;
+        int series =1;
+        for (int i = 1; i < countDayOnMonth; i++) {
             if ((days[month][i - 1] >= desiredStep) && (days[month][i] >= desiredStep)) {
-                currentSeries += 1;
-                if (currentSeries > saveSeries) {
-                    saveSeries = currentSeries;
+                series += 1;
+                if (series > bestSeries) {
+                    bestSeries = series;
                 }
             } else if ((days[month][i - 1] >= desiredStep) || (days[month][i] >= desiredStep)) {
-                localSeries = 1;
-                if (localSeries > saveSeries) {
-                    saveSeries = localSeries;
+                series = 1;
+                if (series > bestSeries) {
+                    bestSeries = series;
                 }
-            } else {
-                currentSeries = 1;
             }
         }
-        return saveSeries;
+        return bestSeries;
     }
 
     public boolean checkStep(int step) { // метод проверки введенного значения
