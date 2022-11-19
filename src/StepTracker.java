@@ -44,21 +44,27 @@ public class StepTracker {
         System.out.println(average);
     }
 
-    public void bestSeries(int month) { // метод для расчета лучшей серии
+    public int bestSeries(int month) { // метод для расчета лучшей серии
         int currentSeries = 1;
         int saveSeries = 0;
+        int localSeries;
         int day = 30;
-        for (int i = 0; i < day; i++) {
-            if ((days[month][i] >= desiredStep) && (days[month][i + 1] >= desiredStep)) {
+        for (int i = 1; i < day; i++) {
+            if ((days[month][i - 1] >= desiredStep) && (days[month][i] >= desiredStep)) {
                 currentSeries += 1;
                 if (currentSeries > saveSeries) {
                     saveSeries = currentSeries;
+                }
+            } else if ((days[month][i - 1] >= desiredStep) || (days[month][i] >= desiredStep)) {
+                localSeries = 1;
+                if (localSeries > saveSeries) {
+                    saveSeries = localSeries;
                 }
             } else {
                 currentSeries = 1;
             }
         }
-        System.out.println(saveSeries);
+        return saveSeries;
     }
 
     public boolean checkStep(int step) { // метод проверки введенного значения
@@ -113,7 +119,7 @@ public class StepTracker {
             System.out.println(converter.calories(sumStep));
 
             System.out.println("Лучшая серия дней:");
-            bestSeries(userMonth);
+            System.out.println(bestSeries(userMonth));
         }
     }
         public void countStep() {
